@@ -155,6 +155,12 @@ llama-65b-gptq-3bit:
 .*openbuddy:
   mode: 'instruct'
   instruction_template: 'OpenBuddy'
+.*openbuddy-ko:
+  mode: 'instruct'
+  instruction_template: 'OpenBuddy-ko'
+.*openbuddy-ja:
+  mode: 'instruct'
+  instruction_template: 'OpenBuddy-ja'
 (?!.*chat).*vigogne:
   mode: 'instruct'
   instruction_template: 'Vigogne-Instruct'
@@ -280,3 +286,10 @@ TheBloke_WizardLM-30B-GPTQ:
   instruction_template: 'Llama-v2'
 .*llama.*70b.*ggml.*\.bin:
   n_gqa: 8
+# = new configs =====
+
+.*llama-2-ko-7b.*:
+  custom_stopping_strings: '<|endoftext|>'
+.*llama-2-ko-7b-chat.*:
+  mode: 'instruct'
+  instruction_template: 'Kullm'

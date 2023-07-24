@@ -105,7 +105,7 @@ def load_tokenizer(model_name, model):
                 trust_remote_code=shared.args.trust_remote_code,
                 use_fast=False
             )
-        except ValueError:
+        except:
             tokenizer = AutoTokenizer.from_pretrained(
                 path_to_model,
                 trust_remote_code=shared.args.trust_remote_code,
@@ -214,6 +214,15 @@ def huggingface_loader(model_name):
                 max_memory=params['max_memory'],
                 no_split_module_classes=model._no_split_modules
             )
+        
+        ##############################
+        if "max_memory" in params:
+            print("==========")
+            print("Temporary fix to pop `max_memory` from params for multi-gpu.")
+            params.pop("max_memory")
+            print("params:", params)
+            print("==========")
+        ##############################
 
         model = LoaderClass.from_pretrained(checkpoint, **params)
 
